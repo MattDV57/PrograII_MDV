@@ -18,6 +18,17 @@ public class main {
 		stack.Desapilar();
 		stack.Desapilar();
 		mostrarPila(stack);
+		
+		PilaTDAI stackRev = new Pila();
+		stackRev.InicializarPila();
+		stackRev.ApilarReverse(1);
+		stackRev.ApilarReverse(7);
+		stackRev.ApilarReverse(4);
+		stackRev.ApilarReverse(2);
+		stackRev.ApilarReverse(5);
+		stackRev.ApilarReverse(4);
+		mostrarPila(stackRev);
+		
 	}
 	
 	public static void mostrarPila (PilaTDAI X) {

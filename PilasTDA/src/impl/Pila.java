@@ -16,6 +16,16 @@ public class Pila implements PilaTDAI{
 		indice++;
 	}
 	
+	public void ApilarReverse(int x) {
+		indice++;
+		
+		for (int i =0; i < indice;i++) {
+			arreglo[i]=arreglo[i+1];
+			//arreglo[indice] = x;
+		}
+		arreglo[0]=x;
+	}
+	
 	public void Desapilar() {
 		indice--;
 	}
