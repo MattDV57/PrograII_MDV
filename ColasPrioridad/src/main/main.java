@@ -36,11 +36,11 @@ public class main {
 		return copia;
 	}
 	
-	public static void mostrarColaPrioridad(ColaPrioridadTDA x) {
-		ColaPrioridadTDA copia = copiarCola(x);
+	public static void mostrarColaPrioridad(ColasPrioridadTDA x) {
+		ColasPrioridadTDA copia = copiarCola(x);
 		System.out.print("[");
 		while(!copia.ColaVacia()) {
-			System.out.print();
+			System.out.print("pepito");
 		}
 		
 	}
