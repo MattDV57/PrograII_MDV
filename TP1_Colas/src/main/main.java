@@ -9,7 +9,10 @@ public class main {
 
 	public static void main(String[] args) {
 		ColaTDA c = new Cola();
+		ColaTDA cola2 = new Cola();
+		
 		c.InicializarCola();
+		cola2.InicializarCola();
 		
 		c.Acolar(9);
 		c.Acolar(3);
@@ -17,16 +20,25 @@ public class main {
 		c.Acolar(5);
 		c.Acolar(0);
 		
-		System.out.println("La Cola original es la siguiente:");
+		cola2.Acolar(89);
+		cola2.Acolar(34);
+		cola2.Acolar(2);
+		cola2.Acolar(3);
+		cola2.Acolar(9);
+		
+		System.out.println("La Cola 1 y 2  son las siguientes:");
 		mostrarCola(c);
+		mostrarCola(cola2);
 		System.out.println("La Cola copiada es la siguiente:");
 		copiarColaTDA2(c);
-		System.out.println("La Cola Invertida c/Pila es la siguiente:");
+		System.out.println("Las Colas Invertidas c/Pila son las siguientes:");
 		invertirCola(c);
+		invertirCola(cola2);
 		System.out.println("La Cola Invertida s/Pila es la siguiente:");
 		System.out.print ("[");
 		recursivCola(c);
 		System.out.print ("]");
+		chequearFinalColas(c,cola2);
 	}
 	public static ColaTDA copiarColaTDA (ColaTDA original) {
 		ColaTDA aux = new Cola();
@@ -122,11 +134,41 @@ public class main {
 			aux= copia4.Primero();
 			copia4.Desacolar();
 			recursivCola(copia4);
+			
 		}
 		else {
 			return;
 		}
 		System.out.print (aux);
 	}
+	
+	public static void chequearFinalColas(ColaTDA x, ColaTDA x2) {
+		ColaTDA copia5 = copiarColaTDA(x);
+		ColaTDA copia6 = copiarColaTDA(x2);
 		
+		PilaTDA pilaaux2 = new Pila();
+		PilaTDA pilaaux3 = new Pila();
+		
+		pilaaux2.InicializarPila();
+		pilaaux3.InicializarPila();
+		
+		while(!copia5.ColaVacia()) {
+			pilaaux2.Apilar(copia5.Primero());
+			copia5.Desacolar();
+		}
+		
+		while(!copia6.ColaVacia()) {
+			pilaaux3.Apilar(copia6.Primero());
+			copia6.Desacolar();
+		}
+		
+		System.out.println(pilaaux2.Tope());
+		System.out.println(pilaaux3.Tope());
+		if(pilaaux2.Tope() == pilaaux3.Tope()) {
+			System.out.print("Son iguales");
+		}
+		else {System.out.print("NO Son iguales");}
+		
+		
+	}
 }
