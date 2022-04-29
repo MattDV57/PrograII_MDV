@@ -10,9 +10,11 @@ public class main {
 	public static void main(String[] args) {
 		ColaTDA c = new Cola();
 		ColaTDA cola2 = new Cola();
+		ColaTDA colaCapi = new Cola();
 		
 		c.InicializarCola();
 		cola2.InicializarCola();
+		colaCapi.InicializarCola();
 		
 		c.Acolar(9);
 		c.Acolar(3);
@@ -26,6 +28,14 @@ public class main {
 		cola2.Acolar(3);
 		cola2.Acolar(9);
 		
+		colaCapi.Acolar(1);
+		colaCapi.Acolar(2);
+		colaCapi.Acolar(3);
+		colaCapi.Acolar(2);
+		colaCapi.Acolar(1);
+		
+		
+		
 		System.out.println("La Cola 1 y 2  son las siguientes:");
 		mostrarCola(c);
 		mostrarCola(cola2);
@@ -37,8 +47,10 @@ public class main {
 		System.out.println("La Cola Invertida s/Pila es la siguiente:");
 		System.out.print ("[");
 		recursivCola(c);
-		System.out.print ("]");
+		System.out.println ("]");
 		chequearFinalColas(c,cola2);
+		colaCapicua(colaCapi);
+		
 	}
 	public static ColaTDA copiarColaTDA (ColaTDA original) {
 		ColaTDA aux = new Cola();
@@ -139,7 +151,7 @@ public class main {
 		else {
 			return;
 		}
-		System.out.print (aux);
+		System.out.print (aux + ",");
 	}
 	
 	public static void chequearFinalColas(ColaTDA x, ColaTDA x2) {
@@ -162,13 +174,47 @@ public class main {
 			copia6.Desacolar();
 		}
 		
-		System.out.println(pilaaux2.Tope());
+		System.out.print(pilaaux2.Tope()+ " - ");
 		System.out.println(pilaaux3.Tope());
 		if(pilaaux2.Tope() == pilaaux3.Tope()) {
-			System.out.print("Son iguales");
+			System.out.println("El final de las colas SON iguales");
 		}
-		else {System.out.print("NO Son iguales");}
+		else {System.out.println("El final de las colas NO Son iguales");}
 		
+		
+	}
+
+	public static void colaCapicua(ColaTDA x) {
+		ColaTDA copia7 = copiarColaTDA(x);
+		ColaTDA copia8 = copiarColaTDA(x);
+		PilaTDA pilaaux4 = new Pila();
+		
+		int flag=0;
+		
+		pilaaux4.InicializarPila();
+		
+		while(!copia7.ColaVacia()) {
+			pilaaux4.Apilar(copia7.Primero());
+			copia7.Desacolar();
+		}
+		
+		while (!copia8.ColaVacia() && !pilaaux4.PilaVacia()) {
+			if (copia8.Primero()==pilaaux4.Tope()) {
+				copia8.Desacolar();
+				pilaaux4.Desapilar();
+			}else {
+				flag=1;
+				break;
+			}
+			
+		}
+		if (flag==0) {
+			System.out.print("la cola es capicua");
+		}else {
+			System.out.print("la cola NO es capicua");
+		}
+			
+	
 		
 	}
 }
