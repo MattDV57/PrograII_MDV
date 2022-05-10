@@ -11,10 +11,14 @@ public class main {
 		ColaTDA c = new Cola();
 		ColaTDA cola2 = new Cola();
 		ColaTDA colaCapi = new Cola();
+		ColaTDA colaUlt = new Cola();
+		ColaTDA colaUlt2 = new Cola();
 		
 		c.InicializarCola();
 		cola2.InicializarCola();
 		colaCapi.InicializarCola();
+		colaUlt.InicializarCola();
+		colaUlt2.InicializarCola();
 		
 		c.Acolar(9);
 		c.Acolar(3);
@@ -34,6 +38,20 @@ public class main {
 		colaCapi.Acolar(2);
 		colaCapi.Acolar(1);
 		
+		colaUlt.Acolar(1);
+		colaUlt.Acolar(3);
+		colaUlt.Acolar(5);
+		colaUlt.Acolar(7);
+		colaUlt.Acolar(9);
+		colaUlt.Acolar(120);
+		
+		colaUlt2.Acolar(120);
+		colaUlt2.Acolar(9);
+		colaUlt2.Acolar(7);
+		colaUlt2.Acolar(35);
+		colaUlt2.Acolar(3);
+		colaUlt2.Acolar(1);
+		
 		
 		
 		System.out.println("La Cola 1 y 2  son las siguientes:");
@@ -50,6 +68,10 @@ public class main {
 		System.out.println ("]");
 		chequearFinalColas(c,cola2);
 		colaCapicua(colaCapi);
+		System.out.println("Punto F:");
+		esLaInversa(colaUlt, colaUlt2);
+		
+		
 		
 	}
 	public static ColaTDA copiarColaTDA (ColaTDA original) {
@@ -215,6 +237,42 @@ public class main {
 		}
 			
 	
+		
+	}
+
+	public static void esLaInversa(ColaTDA colaUno, ColaTDA colaDos) {
+		
+		ColaTDA primeracolaaux = copiarColaTDA(colaUno);
+		ColaTDA ultimacolaaux = copiarColaTDA(colaDos);
+		
+		PilaTDA ultimaPilaAux = new Pila();
+		
+		ultimaPilaAux.InicializarPila();
+		
+		int superflag = 0;
+		
+		while (!ultimacolaaux.ColaVacia()) {
+			ultimaPilaAux.Apilar(ultimacolaaux.Primero());
+			ultimacolaaux.Desacolar();
+		}
+		
+		while (!primeracolaaux.ColaVacia() && !ultimaPilaAux.PilaVacia()) {
+			if (primeracolaaux.Primero() == ultimaPilaAux.Tope()) {
+				primeracolaaux.Desacolar();
+				ultimaPilaAux.Desapilar();
+			}
+			else {
+				superflag = 1;
+				break;
+			}
+		}
+		
+		if (superflag==0) {
+			System.out.print("La Cola C1 ES la inversa de la Cola C2");
+		}
+		else {
+			System.out.print("La Cola C1 NO es la inversa de la Cola C2");
+		}
 		
 	}
 }

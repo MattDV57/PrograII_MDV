@@ -1,8 +1,8 @@
 package impl;
 
-import api.ColasPrioridadTDA;
+import api.ColaPrioridadTDA;
 
-public class ColasPrioridadAO implements ColasPrioridadTDA{
+public class ColaPrioridadTA implements ColaPrioridadTDA{
 	class Elemento{
 		int valor;
 		int prioridad;

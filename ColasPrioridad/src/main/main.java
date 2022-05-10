@@ -10,9 +10,9 @@ public class main {
 		
 		u.InicializarCola();
 		u.AcolarPrioridad(0, 0);
-		u.AcolarPrioridad(0, 0);
-		u.AcolarPrioridad(0, 0);
-		u.AcolarPrioridad(0, 0);
+		u.AcolarPrioridad(5, 3);
+		u.AcolarPrioridad(1, 4);
+		u.AcolarPrioridad(4, 7);
 		mostrarColaPrioridad(u);
 
 	}
@@ -20,6 +20,9 @@ public class main {
 	public static ColasPrioridadTDA copiarCola (ColasPrioridadTDA original) {
 		ColasPrioridadTDA aux = new ColasPrioridadAO();
 		ColasPrioridadTDA copia = new ColasPrioridadAO();
+		
+		aux.InicializarCola();
+		copia.InicializarCola();
 		
 		while(!original.ColaVacia()) {
 			aux.AcolarPrioridad(original.Primero(),original.Prioridad());
@@ -37,10 +40,13 @@ public class main {
 	}
 	
 	public static void mostrarColaPrioridad(ColasPrioridadTDA x) {
-		ColasPrioridadTDA copia = copiarCola(x);
+		ColasPrioridadTDA copia2 = copiarCola(x);
+		
 		System.out.print("[");
-		while(!copia.ColaVacia()) {
+
+		while(!copia2.ColaVacia()) {
 			System.out.print("pepito");
+			copia2.Desacolar();
 		}
 		
 	}
