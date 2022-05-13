@@ -22,11 +22,24 @@ public class main {
 		
 		c.Acolar(5);
 		c.Acolar(90);
-		c.Acolar(2334);
+		c.Acolar(5);
+		c.Acolar(34);
+		c.Acolar(90);
+		c.Acolar(95);
+		c.Acolar(9);
+		c.Acolar(340);
+		c.Acolar(94);
+		c.Acolar(50);
+		c.Acolar(93);
+		c.Acolar(234);
 		
 		mostrarCola(c);
 		
 		c.Desacolar();
+		
+		mostrarCola(c);
+		
+		c.MultiDesacolar(4);
 		
 		mostrarCola(c);
 	}

@@ -26,6 +26,7 @@ public class main {
 		mostrarCola(cola1);
 		System.out.println("");
 		mostrarCola(cola2);
+		System.out.println("");
 		unirColas(cola1,cola2);
 		
 	}
@@ -71,17 +72,25 @@ public class main {
 			
 			
 			while(!copiaUno.ColaVacia() && !copiaDos.ColaVacia()) {
-				if (copiaUno.Prioridad()!=copiaDos.Prioridad()) {
+				if (copiaUno.Prioridad()==copiaDos.Prioridad()) {
+					ultima.AcolarPrioridad(copiaDos.Primero(), copiaDos.Prioridad());
 					ultima.AcolarPrioridad(copiaUno.Primero(), copiaUno.Prioridad());
-					copiaUno.Desacolar();
-					copiaDos.Desacolar();
+								
+				}else {
+					ultima.AcolarPrioridad(copiaUno.Primero(), copiaUno.Prioridad());
+					ultima.AcolarPrioridad(copiaDos.Primero(), copiaDos.Prioridad());
+					
+				
 				}
+				copiaUno.Desacolar();
+				copiaDos.Desacolar();
+
 			}
 			
 			System.out.println(" ");
 			
 			while(!ultima.ColaVacia()) {
-				System.out.print(ultima.Primero() + " - " + ultima.Prioridad());
+				System.out.print("[" + ultima.Primero() + " - " + ultima.Prioridad() + "]");
 				ultima.Desacolar();
 			}
 			

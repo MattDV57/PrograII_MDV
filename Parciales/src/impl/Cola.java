@@ -23,7 +23,6 @@ public class Cola implements ColaTDA {
 	public void Desacolar() {
 		indice--;
 	}
-
 	
 	public int Primero() {
 		return a[indice-1];
@@ -31,12 +30,5 @@ public class Cola implements ColaTDA {
 	
 	public boolean ColaVacia() {
 		return(indice==0);
-	}
-
-
-	public void MultiDesacolar(int y) {
-		for(int i=0;i<y;i++) {
-			indice--;
-		}			
 	}
 }
