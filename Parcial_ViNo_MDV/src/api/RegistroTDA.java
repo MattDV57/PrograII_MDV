@@ -6,5 +6,4 @@ public interface RegistroTDA {
 	void Descontar(int x);
 	int Chequear(int x);
 	ConjuntoTDA Valores();
-
 }

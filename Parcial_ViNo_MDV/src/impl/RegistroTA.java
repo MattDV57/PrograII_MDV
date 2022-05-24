@@ -3,21 +3,20 @@ package impl;
 import api.ConjuntoTDA;
 import api.RegistroTDA;
 
-public class RegistroTA implements RegistroTDA {
+public class RegistroTA implements RegistroTDA{
 
-	int[] arr;
+	int[] arreglo;
 	int indice;
 	
 	@Override
 	public void InicializarRegistro() {
-		arr = new int[100];
-		indice = 0;
-		
+		arreglo = new int[100];
+		indice=0;
 	}
 
 	@Override
 	public void Contar(int x) {
-		arr[indice] = x;
+		arreglo[indice] = x;
 		indice++;
 	}
 
@@ -26,15 +25,14 @@ public class RegistroTA implements RegistroTDA {
 		
 		int i=0;
 		
-		while(i<indice && arr[i]!=x) {
+		while (i<indice && arreglo[i]!=x) {
 			i++;
 			
 		}
 		
 		if (i<indice) {
-			arr[i] = arr[indice-1];
+			arreglo[i] = arreglo[indice-1];
 			indice--;
-			
 		}
 		
 	}
@@ -42,29 +40,31 @@ public class RegistroTA implements RegistroTDA {
 	@Override
 	public int Chequear(int x) {
 		
-		int cant=0;
+		int cont=0;
 		
 		for(int i=0;i<indice;i++) {
-			if (arr[i]==x) {
-				cant++;
+			if(arreglo[i]==x) {
+				cont++;
 			}
 		}
-		return cant;
+		
+		return cont;
 	}
 
 	@Override
 	public ConjuntoTDA Valores() {
 		
-		ConjuntoTDA conj = new ConjuntoTA();
+		ConjuntoTDA vals = new ConjuntoTA();
 		
-		conj.InicializarConjunto();
+		vals.InicializarConjunto();
 		
 		for(int i=0;i<indice;i++) {
-			
-			conj.Agregar(arr[i]);
+			vals.Agregar(arreglo[i]);
+		}
 		
-		}		
-		return conj;
+		return vals;
 	}
+
+
 
 }
