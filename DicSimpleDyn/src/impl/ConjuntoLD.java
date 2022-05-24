@@ -68,7 +68,7 @@ public class ConjuntoLD implements DicSimpleTDA{
 		return n. valor;
 	}
 		
-	public ConjuntoTDA Claves(){
+	public static ConjuntoTDA Claves(){
 		
 		ConjuntoTDA c = new ConjuntoLD();
 		
