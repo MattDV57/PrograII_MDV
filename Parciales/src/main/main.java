@@ -47,8 +47,6 @@ public class main {
 		d1.Agregar(2, 8);
 		d1.Agregar(4, 7);
 		
-	
-		
 		d2.Agregar(3, 3);
 		d2.Agregar(1, 5);
 		d2.Agregar(7, 9);
@@ -57,40 +55,23 @@ public class main {
 		
 		System.out.println(" ");
 		System.out.println(" ");
-	//	combinarAmbos(d1,d2);
+		combinarAmbos(d1,d2);
+		
+		Nodo Inicio = null;
+		
+		Inicio = agregarNodos(Inicio,1);
+		Inicio = agregarNodos(Inicio,3);
+		Inicio = agregarNodos(Inicio,3);
+		Inicio = agregarNodos(Inicio,1);
+		Inicio = agregarNodos(Inicio,5);
+		Inicio = agregarNodos(Inicio,7);
+		Inicio = agregarNodos(Inicio,7);
+		Inicio = agregarNodos(Inicio,3);
+		System.out.println(" ");
+		System.out.println(" ");
+		mostrarListaEnlazada(Inicio);
 
-		Nodo x1 = new Nodo();
-		Nodo x2 = new Nodo();
-		Nodo x3 = new Nodo();
-		Nodo x4 = new Nodo();
-		Nodo x5 = new Nodo();
-		Nodo x6 = new Nodo();
-		Nodo x7 = new Nodo();
-		Nodo x8 = new Nodo();
-		
-		x1.valor = 1;
-		x2.valor = 3;
-		x3.valor = 3;
-		x4.valor = 1;
-		x5.valor = 5;
-		x6.valor = 7;
-		x7.valor = 7;
-		x8.valor = 3;
-		
-		x1.sig = x2;
-		x2.sig = x3;
-		x3.sig = x4;
-		x4.sig = x5;
-		x5.sig = x6;
-		x6.sig = x7;
-		x7.sig = x8;
-		x8.sig = null;
-		
-		mostrarListaEnlazada(x1);
-		reducirListaEnlazada(x1);
-		
-		
-				
+		reducirListaEnlazada(Inicio);
 	}
 
 	public static void mostrarCola(ColaTDA x) {
@@ -162,13 +143,17 @@ public class main {
 		System.out.print("[");
 		
 		while (!sinRepeticiones.PilaVacia()) {
-			System.out.print(sinRepeticiones.Tope() + ",");
+			System.out.print(sinRepeticiones.Tope());
 			sinRepeticiones.Desapilar();
+			if(!sinRepeticiones.PilaVacia()) {
+				System.out.print(",");
+			}
 		}
 		System.out.print("]");
 	}
 	
 	public static void combinarAmbos(DiccionarioSimpleTDA duno, DiccionarioSimpleTDA ddos) {
+		
 		ConjuntosTDA conjuno = duno.Claves();
 		ConjuntosTDA condos = ddos.Claves();
 		
@@ -176,49 +161,81 @@ public class main {
 		
 		dicFinal.InicializarDiccionario();
 		
-		while (!conjuno.ConjuntoVacio()&&!condos.ConjuntoVacio()) {
-			int keyuno = conjuno.Elegir();
-			int keydos = condos.Elegir();
+		int v1;
+		int v2;
+		
+		while(!conjuno.ConjuntoVacio()) {
+			v1 = conjuno.Elegir();
+			conjuno.Sacar(v1);
 			
-			if (keyuno!=keydos) {
-				dicFinal.Agregar(duno.Recuperar(keyuno), keyuno);
-				System.out.print(ddos.Recuperar(keyuno) + keyuno);
-				dicFinal.Agregar(ddos.Recuperar(keydos), keydos);
-				System.out.print(ddos.Recuperar(keydos) + keydos);
-			}
-			
-			else {
-				if (duno.Recuperar(keyuno) > ddos.Recuperar(keydos)) {
-					dicFinal.Agregar(ddos.Recuperar(keydos), keydos);
-					System.out.print(ddos.Recuperar(keydos) + keydos);
+			if(condos.Pertenece(v1)) {
+				if (ddos.Recuperar(v1) < duno.Recuperar(v1)) {
+					dicFinal.Agregar(v1, ddos.Recuperar(v1));
+				}else {
+					dicFinal.Agregar(v1, duno.Recuperar(v1));
 				}
-				else {
-					dicFinal.Agregar(duno.Recuperar(keyuno), keyuno);
-					System.out.print(ddos.Recuperar(keyuno) + keyuno);
-				}
+			}else {
+				dicFinal.Agregar(v1, duno.Recuperar(v1));
 			}
-			
-			conjuno.Sacar(keyuno);
-			condos.Sacar(keydos);
-			
-		}
-		
-		ConjuntosTDA confinal = dicFinal.Claves();
-		
-	
-		while(!confinal.ConjuntoVacio()) {
-			int keyfinal = confinal.Elegir();
-			System.out.print(dicFinal.Recuperar(keyfinal));
-			confinal.Sacar(keyfinal);
-		
-		}
-		
 
+		}
+		
+		while(!condos.ConjuntoVacio()) {
+			v2 = condos.Elegir();
+			condos.Sacar(v2);
+			
+			if(!conjuno.Pertenece(v2)) {
+				dicFinal.Agregar(v2, ddos.Recuperar(v2));
+		
+			}
+		
+		}
+		
+		ConjuntosTDA conjFinal = dicFinal.Claves();
+		
+		int cf;
+		System.out.print("[" );
+		while(!conjFinal.ConjuntoVacio()) {
+			cf = conjFinal.Elegir();
+			conjFinal.Sacar(cf);
+			System.out.print(cf + "-" + dicFinal.Recuperar(cf));
+			if(!conjFinal.ConjuntoVacio()) {
+				System.out.print(", " );
+			}
+		}
+		
+		System.out.print("]" );
+		
 		
 		return;
 		
 	}
 	
+	public static Nodo agregarNodos(Nodo L, int x) {
+		
+		Nodo nuevo = new Nodo();
+		
+		nuevo.sig=null;
+		nuevo.valor=x;
+		
+		if(L==null) {
+			
+			return nuevo;
+		
+		}else {
+		
+			Nodo viajero = L;
+			
+			while(viajero.sig!=null) {
+			
+				viajero = viajero.sig;
+				
+			}
+			viajero.sig=nuevo;
+			return L;
+		}
+	}
+		
 	public static void mostrarListaEnlazada(Nodo A) {
 		Nodo viajero=A;
 		System.out.print("[");
