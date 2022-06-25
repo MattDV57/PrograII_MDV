@@ -17,7 +17,13 @@ public class Heap implements HeapTDA {
 		Heap[0] = Integer.MAX_VALUE;
 		
 	}
-	public void Insertar(int x) {
+	
+    public void Insertar(int x) {
+    	
+    	/*
+    	 * Inserta el elemento en la primer hoja disponible
+    	 * Y luego empieza a corroborar si debe hacer intercambios hacia arriba
+    	 */
 		Heap[++size] = x;
 		int current = size;
 		
@@ -27,65 +33,119 @@ public class Heap implements HeapTDA {
 			current = Root(current);
 		}
 	}
+
+	public void MostrarHeap() {
+		System.out.println("----------------------------------------");
+		System.out.println();
+		for(int i=1;i<=size/2;i++) {
+		
+			System.out.println("	 PADRE: " + Heap[i] );
+		            
+            if(LeftChild(i)<=size) //Chequea que el hijo izquierdo no exceda el limite del arreglo
+               System.out.print( " Hijo Izquierdo: " + Heap[LeftChild(i)]);
+             
+            if(RightChild(i)<=size) //Chequea que el hijo derecho no exceda el limite del arreglo
+                System.out.print(" Hijo Derecho: "+ Heap[RightChild(i)]);
+             
+                System.out.println(); //for new line
+                System.out.println();
+		}
 	
-	private void Exchange(int first, int second) {
-		int aux = Heap[first];
-		Heap[first]=Heap[second];
-		Heap[second] = aux;
+		System.out.println("----------------------------------------");
+		System.out.println();
 	}
 	
-	private int Root(int pos) {
-		return pos/2;
-	}
-	@Override
 	public void Eliminar() {
-		// TODO Auto-generated method stub
+		
+		/*
+		 * Captura el valor del tamaño previo a decrementarlo
+		 * Luego Eliminar la raíz del Max_Heap y mediante el heapify acomoda al árbol 
+		 */
+        Heap[0] = Heap[--size];
+        MaxHeapify(0);
 		
 	}
 	
-    // Method 1
-    // Returning position of parent
-    private int parent(int pos) { return (pos - 1) / 2; }
- 
-    // Method 2
-    // Returning left children
-    public int leftChild(int pos) { 
-    		return (2 * pos); 
-    }
- 
-    // Method 3
-    // Returning right children
-    public int rightChild(int pos){
-    		return (2 * pos)+1; 
-    }
-
 	public int Primero() {
+		
+		/*Devuelve el primer elemento del arreglo
+		en el caso del Max_Heap, el mas alto*/
 		return (Heap[1]);
 	}
 	
 	public boolean HeapVacio() {
+		
+		/*Chequeao si el tamaño del arbol es cero
+		Lo que significa que esta vacío*/
 		return (size==0);
 	}
 	
-	public void mostrarHeap() {
-		for(int i=1;i<=size/2;i++) {
-		
-			//System.out.print("PADRE: "+  Heap[i] +  " IZQUIERDO: " + Heap[2*i] +" DERECHO: " + Heap[2*i + 1]);
-			//System.out.println();
-			//System.out.println("------------");
-			System.out.print("PADRE: " + Heap[i] );
-            
-            if(leftChild(i)<size) //if the child is out of the bound of the array
-               System.out.print( " Hijo Izquierdo: " + Heap[leftChild(i)]);
-             
-            if(rightChild(i)<size) //if the right child index must not be out of the index of the array
-                System.out.print(" Hijo Derecho: "+ Heap[rightChild(i)]);
-             
-                System.out.println(); //for new line
-		}
-		System.out.println();
-	}
+
+//-----------------------MÉTODOS PRIVADOS-----------------------
 	
+	private void Exchange(int first, int second) {
+		
+		/*
+		 * Intercambia las posiciones del primer valor y el segundo
+		 * utilizando una variable auxiliar para dicho intercambio
+		 */
+		int aux = Heap[first];
+		Heap[first]=Heap[second];
+		Heap[second] = aux;
+	}
+		
+    private boolean EsHoja(int pos) {
+    	
+    	//Chequea si la la posición que indicamos pertenece a una hoja o no.
+        if (pos > (size / 2) && pos <= size) {
+            return true;
+        }
+        return false;
+    }
+	
+	private int Root(int pos) {
+		
+		//Devuelve la raíz del arbol
+		return pos/2;
+	}
+    
+    private int LeftChild(int pos) { 
+    	
+    	//Devuelve el valor del hijo izquierdo
+    		return (2 * pos); 
+    }
+ 
+    private int RightChild(int pos) {
+    	
+    	//Devuelve el valor del hijo derecho
+    		return (2 * pos)+1; 
+    }
+
+    private void MaxHeapify(int pos) {
+    	
+    	/*
+    	 * Este método recursivo acomoda el árbol luego de una eliminación
+    	 * Pregunta si es una hoja, en caso de no serlo
+    	 * Ejecuta el orden en base a los criterios del Max_Heap
+    	 */
+        if (EsHoja(pos))
+            return;
+ 
+        if (Heap[pos] < Heap[LeftChild(pos)]
+            || Heap[pos] < Heap[RightChild(pos)]) {
+ 
+            if (Heap[LeftChild(pos)]
+                > Heap[RightChild(pos)]) {
+                Exchange(pos, LeftChild(pos));
+                MaxHeapify(LeftChild(pos));
+            }
+            else {
+                Exchange(pos, RightChild(pos));
+                MaxHeapify(RightChild(pos));
+            }
+        }
+    }
+  
 }
     
     
