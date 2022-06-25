@@ -76,9 +76,9 @@ public class ConjuntoLD implements DicSimpleTDA{
 		
 		NodoClave aux = origen;
 		
-		while (aux!= null ){
-			c. Agregar(aux .clave);
-			aux = aux. sigClave;
+		for ( int i =0; i< cant ; i ++){
+			c. Agregar( elementos[i]. clave);
+		
 		}
 		return c;
 	}

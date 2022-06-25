@@ -7,6 +7,8 @@ public interface HeapTDA {
 	int Primero();
 	boolean HeapVacio();
 	void mostrarHeap();
+	int leftChild(int pos);
+	int rightChild(int pos);
 	
 		
 	

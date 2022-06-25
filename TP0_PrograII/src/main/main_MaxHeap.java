@@ -8,7 +8,7 @@ public class main_MaxHeap {
 	public static void main(String[] args) {
 		
 		HeapTDA MHeap = new Heap();
-		MHeap.InicializarHeap(20);
+		MHeap.InicializarHeap(21);
 		
 		MHeap.Insertar(5);
 		MHeap.Insertar(3);
