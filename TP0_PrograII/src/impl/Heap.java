@@ -47,7 +47,7 @@ public class Heap implements HeapTDA {
             if(RightChild(i)<=size) //Chequea que el hijo derecho no exceda el limite del arreglo
                 System.out.print(" Hijo Derecho: "+ Heap[RightChild(i)]);
              
-                System.out.println(); //for new line
+                System.out.println(); 
                 System.out.println();
 		}
 	

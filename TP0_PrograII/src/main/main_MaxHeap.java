@@ -42,6 +42,8 @@ public class main_MaxHeap {
 		/*Imprimimos el primer elemento.
 		En el caso del MaxHeap, la raíz (elemento de mayor valor)*/
 		System.out.println("- El elemento de mayor valor es: " + MHeap.Primero());
+
+		
 		
 		// ------------- HEAP 2 -------------
 		
