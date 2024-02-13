@@ -17,6 +17,7 @@ public class ColaConPrioridadTDA_9 {
 		ccp1.acolarPrioridad(4, 3);
 		ccp1.acolarPrioridad(2, 54);
 		ccp1.acolarPrioridad(7, 2);
+		ccp1.acolarPrioridad(7, 234);
 		ccp1.acolarPrioridad(1, 43);
 		ccp1.acolarPrioridad(2, 23);
 		ccp1.acolarPrioridad(9, 33);
@@ -91,12 +92,14 @@ public class ColaConPrioridadTDA_9 {
 			
 			claves.sacar(aux2);
 			ConjuntoTDA valores = dM2.recuperar(aux2);
+			System.out.println(" ");
 			System.out.print(aux2 + " - ");
 			
 			while(!valores.conjuntoVacio()) {
 				int impr = valores.elegir();
 				valores.sacar(impr);
-				System.out.println(impr + " ");
+				System.out.print(" " + impr + " ");
+				
 			}
 			
 			
