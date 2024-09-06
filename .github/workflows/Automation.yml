@@ -14,7 +14,6 @@ jobs:
           registry: docker.pkg.github.com
           repository: ${{ github.repository }}/next
           tags: latest, {{ github.run_number }}
-          ls ${{ github.workspace }}
       - name: Publish to Docker Hub
         uses: docker/build-push-action@v1
         with:
