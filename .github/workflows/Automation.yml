@@ -1,0 +1,24 @@
+name: Dockerize my files from UADE
+on: push
+jobs:
+  build-container:
+    name: Build docker container image
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Publish to GitHub Packages
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: docker.pkg.github.com
+          repository: ${{ github.repository }}/next
+          tags: latest, {{ github.run_number }}
+          ls ${{ github.workspace }}
+      - name: Publish to Docker Hub
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME}}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: mattdv57/mattdv-testrepo
+          tags: latest, {{ github.run_number }}
